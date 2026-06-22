@@ -760,10 +760,10 @@ header {
 <i class="fas fa-bars"></i>
 </button>
 <ul class="nav-menu">
-<li><a href="#home">Home</a></li>
-<li><a href="#programs">Programs</a></li>
-<li><a href="#ages">Age Groups</a></li>
-<li><a href="#about">About Us</a></li>
+<li><a href="index.html#home">Home</a></li>
+<li><a href="index.html#programs">Programs</a></li>
+<li><a href="index.html#ages">Age Groups</a></li>
+<li><a href="index.html#about">About Us</a></li>
 <li class="dropdown">
 <a href="#">Contact <i class="fas fa-caret-down"></i></a>
 <ul class="dropdown-menu">
@@ -1033,5 +1033,53 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<!-- Contact Choice Modal -->
+<div id="contactChoiceModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+<div style="background:white; border-radius:20px; padding:2rem; max-width:320px; width:85%; text-align:center; box-shadow:0 10px 40px rgba(0,0,0,0.3);">
+<h3 style="margin-bottom:0.5rem; color:#2C3E50;">Contact Us</h3>
+<p style="margin-bottom:1.5rem; color:#666; font-size:0.95rem;">How would you like to reach us?</p>
+<a id="contactModalWhatsApp" href="#" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; background:#25D366; color:white; padding:0.9rem; border-radius:50px; text-decoration:none; font-weight:bold; margin-bottom:0.75rem;">
+<i class="fab fa-whatsapp" style="font-size:1.3rem;"></i> WhatsApp
+</a>
+<a id="contactModalCall" href="#" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; background:#4ECDC4; color:white; padding:0.9rem; border-radius:50px; text-decoration:none; font-weight:bold; margin-bottom:0.75rem;">
+<i class="fas fa-phone"></i> Call
+</a>
+<button onclick="document.getElementById('contactChoiceModal').style.display='none';" style="background:none; border:none; color:#999; margin-top:0.5rem; cursor:pointer; font-size:0.9rem; text-decoration:underline;">Cancel</button>
+</div>
+</div>
+
+<script>
+(function() {
+    var TEL_NUMBER = '+6596601649';
+    var WA_NUMBER = '6596601649';
+    var WA_MSG = encodeURIComponent("Hi! I'd like to get in touch with The ThinkerBot.");
+
+    function openContactModal(e) {
+        e.preventDefault();
+        var modal = document.getElementById('contactChoiceModal');
+        var waLink = document.getElementById('contactModalWhatsApp');
+        var callLink = document.getElementById('contactModalCall');
+        waLink.href = 'https://wa.me/' + WA_NUMBER + '?text=' + WA_MSG;
+        callLink.href = 'tel:' + TEL_NUMBER;
+        modal.style.display = 'flex';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+            link.addEventListener('click', openContactModal);
+        });
+
+        var modal = document.getElementById('contactChoiceModal');
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    });
+})();
+</script>
+
 </body>
 </html>
